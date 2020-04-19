@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<title>КнигаПамяти</title>
+		
+		<link rel="shortcut icon" href='{% static "img/icon.png" %}' type="image/png"/>
+		
+		<meta name='viewport' content='width=device-width,inital-scale=1'>
+	</head>
+	
+	<body>
+		<nav>
+			<table>
+				<tr>
+					<td><p><div class='center'><a href='{% url "index" 1 %}'>Главная</a></div></p></td>
+					<td><p><div class='center'><a href='{% url "add" %}'>Добавить</a></div></p></td>
+					<td><p><div class='right'>Вход/Выход</div></p></td>
+				</tr>
+			</table> 
+			
+		</nav>
+		<div class='body'>
+			{% if conf == 'adds' %}		
+				<form method='POST'>
+						{% csrf_token %}
+						{{ form.as_p }}
+						<p><input class='inp' type='submit' value='Publish'></p>
+					</form>
+			{% else %}
+			<table>
+			{% for c in cont %}
+				<tr>
+					<td class='img'><img src='{% static "img/icon.png" %}'></td>
+					<td class='text'>
+					
+					<h1>{{c.Name}}</h1>
+					<h3>Родился: {{c.YearsOne}}</h3><h3>Умер:{{c.YearsTwo}}</h3>
+					<h4>{{c.Place}}</h4>
+					
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% endif %}
+		</div>
+		<nav class='down'>
+		<table>
+				<tr>
+				<td class ='center'><p><a href='{% url "index" 1 %}'>В начало</a></p></td>
+					{% for b in but %}
+					{% if pp == b %}
+					<td  class='curr'><p><div class='center'><a href='#'>{{b}}</a></div></p></td>
+					{% else %}
+					<td><p><div class='center'><a href='{% url "index" b %}'>{{b}}</a></div></p></td>
+					{% endif %}
+					{% endfor %}
+				<td class='center'><p><a href='{% url "index" 84 %}'>В конец</a></p></td>
+				</tr>
+			</table> 
+		</nav>
+	</body>
+	<style>
+		@font-face{
+		font-family: Sorce;
+		src: url('{% static "fonts/ind.otf" %}')
+		}
+		body{background-image: url('{% static "img/bg.png" %}');background-repeat: no-repeat ;background-color: #fbb03b; font-family: Sorce }
+		a{text-decoration: none; color: inherit}
+		
+		nav table{width: 100%}
+		nav div{font-size: 150%}
+		nav div:hover{box-shadow:  0px 0px 5px black, inset 0px 0px 5px black; transition: .2s ease-in-out; border-radius: 4px}
+		nav table .center{text-align: center}
+		nav table .right{text-align: right}
+		nav .curr{background: #fbb03b; border-radius: 10px}
+		.down{background: #aba0ab}
+		
+		.body table{width: 80%; margin-left: 15%}
+		.body table .text{text-align: justify; overflow-y: scroll; border: 2px dotted black;border-radius: 10px 0 0 10px; }
+		.body .img{width: 20%; border-radius: 0 -10px -10px 0}
+		.body  tr{background: #edd24a; border-radius: 10px; height: 500px }
+	</style>
+</html>
