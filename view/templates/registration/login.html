@@ -10,10 +10,7 @@
 	</head>
 	
 	<body>
-		<header>
-			<div class='right sc'><a href='{% url "login" %}'>Вход/Выход</a></div>
-			
-		</header>
+		
 		<nav>
 			<table>
 				<tr>
@@ -26,48 +23,15 @@
 			</table> 
 			
 		</nav>
-		<div class='body'>
-			{% if conf == 'adds' %}		
+		<div class='fc body'>
+				
 				<form method='POST'>
 						{% csrf_token %}
 						{{ form.as_p }}
-						<p><input class='inp' type='submit' value='Добавить'></p>
-				</form>
-			{% else %}
-			<div class='scr'>
-			<table class='dd'>
-			
-				<tr>
-					<td class='img'>
-					<div></div><img src='{% static "img/icon.png" %}'></td>
-					<td class='fc text'>
-					
-					<h1>{{cont.Name}}</h1>
-					<h3>Родился: {{c.YearsOne}}</h3><h3>Умер: {{cont.YearsTwo}}</h3>
-					<h4>Место призыва: {{cont.Place}}</h4>
-					
-					</td>
-				</tr>
-				
-			</table>
-			<table class='nav'>
-				<tr>
-				
-					{% for b in but %}
-					{% if pp > b %}
-					<td class='l'><div class='center'><a href='{% url "index" b %}'>&#9664;</a></div></td>
-					{% else %}
-					<td class='r'><div class='center'><a href='{% url "index" b %}'>&#9654;</a></div></td>
-					{% endif %}
-					{% endfor %}
-				
-				</tr>
-			</table> 
-			</div>
-			{% endif %}
+						<p><input class='inp' type='submit' value='Войти'></p>
+					</form>
 			
 		</div>
-		
 		<footer>
 		<p><a href='https://vk.com/itcubemiass'>IT-Cube <br> Миасс</a></p>
 		</footer>
@@ -94,13 +58,12 @@
 		nav .curr{background: #fbb03b; border-radius: 10px}
 		.down{background: #aba0ab}
 		
-		.body table{width: 80%; height: 500px; margin-left: 15%}
-		.body .scr{ height: 500px}
-		.body table td{text-align: justify;  border: 7px solid rgb(166, 88, 10);border-radius: 20px; }
-		.body .img{width: 20%; border-radius: 0 -10px -10px 0}
+		.body {width: 80%; height: 500px; margin-left: 15%;background:rgba(150, 50, 0, 0.6); font-size: 300%}
+		.body {text-align: justify;  border: 7px solid rgb(166, 88, 10);border-radius: 20px; }
 		.body .img div{height: 550px; width: 32%; border: 5px solid #363636; background: rgba(165, 165, 165, 0.5); position: absolute; z-index: -1;margin-left:-3%;border-radius: 20px; top: 3%}
 		.body .dd tr{background:rgba(150, 50, 0, 0.6); border-radius: 10px;}
-		.body form{background: rgba(150, 50, 0, 0.6); border: 5px solid #363636; border-radius: 20px; margin-left: 15%}
+		.inp{font-size: 150%; background: rgba(165, 165, 165, 0.5); font-family: Sorce; color: white; border:  5px solid #363636; border-radius: 10px}
+		.inp:hover{background:#363636; transition: .5s ease-in-out}
 		.body .nav td{text-align: center; position: absolute;  top: 60%; border-radius: 50px}
 		.body .nav .l{left: 16%}
 		.body .nav .r{right: 6%}
